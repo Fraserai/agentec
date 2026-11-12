@@ -1,26 +1,142 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --brand-navy: #0a1045;
+  --brand-cream: #fffce8;
+  --brand-cream-deep: #f6f2df;
+  --brand-ink: #121a56;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-cream: var(--brand-cream);
+  --color-brand-ink: var(--brand-ink);
+  --font-sans: "Avenir Next", "Söhne", "Geist", "Helvetica Neue", sans-serif;
+  --font-mono: "SFMono-Regular", "IBM Plex Mono", "JetBrains Mono", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--brand-cream);
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--brand-cream);
+  color: var(--brand-navy);
+  font-family: "Avenir Next", "Söhne", "Geist", "Helvetica Neue", sans-serif;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+span {
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+}
+
+::selection {
+  background: rgb(10 16 69 / 16%);
+  color: var(--brand-navy);
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(10 16 69 / 32%);
+  outline-offset: 4px;
+}
+
+.surface-dark {
+  background:
+    radial-gradient(circle at top left, rgb(255 255 255 / 8%), transparent 30%),
+    radial-gradient(circle at bottom right, rgb(255 255 255 / 4%), transparent 24%),
+    linear-gradient(180deg, #0a1045 0%, #0a1045 100%);
+}
+
+.section-grid {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 7%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 7%) 1px, transparent 1px);
+  background-position: center;
+  background-size: 36px 36px;
+  mask-image: linear-gradient(180deg, transparent, black 14%, black 86%, transparent);
+}
+
+.hero-mesh {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  background-position: center;
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at center, black 45%, transparent 86%);
+}
+
+.hero-orb {
+  position: absolute;
+  height: 20rem;
+  width: 20rem;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 8%);
+  filter: blur(80px);
+}
+
+.float-panel {
+  animation: float-panel 12s ease-in-out infinite;
+}
+
+.reveal {
+  opacity: 1;
+  transform: none;
+  animation: section-reveal 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes float-panel {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes section-reveal {
+  from {
+    opacity: 0.92;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
